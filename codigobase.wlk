@@ -33,4 +33,16 @@ object pelota {
   method mover() {
     position = position.right(1)
   }
+
+}
+
+class Defensores {
+    
+    var property position = game.origin()
+    
+    method image() = "defensor.png"
+    
+    method mover() {
+      position = position.right(1)
+    }
 }
