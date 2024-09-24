@@ -4,6 +4,6 @@ import codigobase.*
 program juegoDelDiego {
 
 	juego.iniciar()
-	game.start()
 
+	game.start()
 }
