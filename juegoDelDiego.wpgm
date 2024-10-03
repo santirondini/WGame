@@ -6,3 +6,5 @@ program juegoDelDiego {
 	juego.iniciar()
 	game.start()
 }
+
+
