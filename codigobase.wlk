@@ -9,12 +9,14 @@ object juego{
     game.boardGround("cancha.png")
     game.addVisualCharacter(diego)
     game.addVisual(pelota)
+    const defensor1 = new Defensores()
+    game.addVisual(defensor1)
   }
 }
 
 object diego {
 
-  var property position = game.origin()
+  var property position = game.center()
 
   method image() = "maradona.png" 
 
@@ -40,9 +42,10 @@ class Defensores {
     
     var property position = game.origin()
     
-    method image() = "defensor.png"
+    method image() = "romaña.png"
     
     method mover() {
       position = position.right(1)
     }
 }
+
