@@ -4,9 +4,9 @@ import juegoDelDiego.*
 object juego{
   
   method iniciar(){
-    game.width(35)
-    game.height(15)
-    game.boardGround("cancha.png")
+    game.width(41)
+    game.height(20)
+    game.boardGround("canchaOchoBit.jpg")
     game.addVisualCharacter(diego)
     game.addVisual(pelota)
     const defensor1 = new Defensores()
@@ -30,7 +30,7 @@ object pelota {
 
   var property position = game.center()
 
-  method image() = "pelota.png" 
+  method image() = "labocha.png" 
 
   method mover() {
     position = position.right(1)
@@ -42,7 +42,7 @@ class Defensores {
     
     var property position = game.origin()
     
-    method image() = "romaña.png"
+    method image() = "defensor.png"
     
     method mover() {
       position = position.right(1)
