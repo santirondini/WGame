@@ -11,26 +11,27 @@ object juego{
     game.addVisual(pelota)
     const defensor1 = new Defensores()
     game.addVisual(defensor1)
+    game.onTick(1000, "movimiento", { defensor1.mover() })
   }
 }
+
 
 object diego {
 
   var property position = game.center()
 
-  method image() = "maradona.png" 
+  method image() = "maradona.png"
 
-  method subir() {
+    method subir() {
     position = position.up(1)
   }
-  
 }
 
 object pelota {
 
   var property position = game.center()
 
-  method image() = "labocha.png" 
+  method image() = "labocha.png"
 
   method mover() {
     position = position.right(1)
@@ -40,12 +41,13 @@ object pelota {
 
 class Defensores {
     
-    var property position = game.origin()
+    var property position = game.at(10,10)
     
     method image() = "defensor.png"
-    
+
     method mover() {
-      position = position.right(1)
-    }
+      const y = 0.randomUpTo(game.height()).truncate(0)
+      position = game.at(10,y)
+  }
 }
 
