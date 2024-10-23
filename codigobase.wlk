@@ -9,6 +9,8 @@ object juego{
     game.boardGround("canchaOchoBit.jpg")
     game.addVisualCharacter(diego)
     game.addVisual(pelota)
+    game.addVisual(temporizador)
+    temporizador.iniciarTiempo()
     const defensor1 = new Defensores()
 
     game.addVisual(defensor1)
@@ -18,8 +20,37 @@ object juego{
     game.whenCollideDo(diego,{pelota=>
       pelota.seguirADiego()
     })
+
+    game.whenCollideDo(defensor1,{pelota => 
+      game.stop()
+      game.addVisual(perdiste)
+    })
   }
 }
+
+object temporizador {
+
+  var property tiempoRestante = 30
+
+  method position() = game.at(20,18)
+
+  method text() = "Tiempo: " + tiempoRestante
+
+  method textColor() = paleta.negro()
+
+  method iniciarTiempo() {
+    game.onTick(1000, "decrementarTiempo", { self.decrementar() })
+  }
+
+  method decrementar() {
+    tiempoRestante = tiempoRestante - 1
+    if (tiempoRestante <= 0) {
+      game.stop()
+      game.addVisual(perdiste)
+    }
+  }
+}
+
 
 object diego {
 
@@ -40,7 +71,7 @@ object pelota {
 
   method seguirADiego() {
       siguiendoADiego = true
-      game.onTick(100, "sincronizar", { self.sincronizarConDiego() })
+      game.onTick(50, "sincronizar", { self.sincronizarConDiego() })
   }
 
 method sincronizarConDiego() {
@@ -49,6 +80,23 @@ method sincronizarConDiego() {
     }
   }
 }
+
+object paleta {
+  const property verde = "00FF00FF"
+  const property rojo = "FF0000FF"
+  const property negro = "00000000"
+}
+
+object perdiste {
+
+  method position() = game.center()
+
+  method text() = "PERDISTE. ME COMENTAN QUE EL DIEGO NO RESISTIÓ" 
+
+  method textColor() = paleta.rojo()
+
+}
+
 
 class Defensores {
     
@@ -59,8 +107,7 @@ class Defensores {
     method mover() {
       const y = 0.randomUpTo(game.height()).truncate(0)
       position = game.at(10,y)
-
-    
   }
+
 }
 
