@@ -10,11 +10,16 @@ object juego{
     game.addVisualCharacter(diego)
     game.addVisual(pelota)
     const defensor1 = new Defensores()
+
     game.addVisual(defensor1)
+
     game.onTick(1000, "movimiento", { defensor1.mover() })
+
+    game.whenCollideDo(diego,{pelota=>
+      pelota.centrar()
+    })
   }
 }
-
 
 object diego {
 
@@ -22,20 +27,17 @@ object diego {
 
   method image() = "maradona.png"
 
-    method subir() {
-    position = position.up(1)
-  }
 }
 
 object pelota {
 
-  var property position = game.center()
+  var property position = game.at(20,10)
+
+  method centrar() {
+    position = game.origin()
+  }
 
   method image() = "labocha.png"
-
-  method mover() {
-    position = position.right(1)
-  }
 
 }
 
