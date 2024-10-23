@@ -16,7 +16,7 @@ object juego{
     game.onTick(1000, "movimiento", { defensor1.mover() })
 
     game.whenCollideDo(diego,{pelota=>
-      pelota.centrar()
+      pelota.seguirADiego()
     })
   }
 }
@@ -25,6 +25,8 @@ object diego {
 
   var property position = game.center()
 
+  method position() = position 
+
   method image() = "maradona.png"
 
 }
@@ -32,13 +34,20 @@ object diego {
 object pelota {
 
   var property position = game.at(20,10)
-
-  method centrar() {
-    position = game.origin()
-  }
+  var property siguiendoADiego = false
 
   method image() = "labocha.png"
 
+  method seguirADiego() {
+      siguiendoADiego = true
+      game.onTick(100, "sincronizar", { self.sincronizarConDiego() })
+  }
+
+method sincronizarConDiego() {
+    if (siguiendoADiego) {
+      position = diego.position()
+    }
+  }
 }
 
 class Defensores {
@@ -50,6 +59,8 @@ class Defensores {
     method mover() {
       const y = 0.randomUpTo(game.height()).truncate(0)
       position = game.at(10,y)
+
+    
   }
 }
 
