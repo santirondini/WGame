@@ -54,9 +54,13 @@ object temporizador {
 
 object diego {
 
-  var property position = game.center()
+  var position = game.center()
 
-  method position() = position 
+  method position() = position
+
+  method position(x) {
+    position = x
+  } 
 
   method image() = "maradona.png"
 
