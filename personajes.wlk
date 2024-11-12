@@ -24,7 +24,7 @@ object temporizador {
 
 object diego {
 
-  var property position = game.center()
+  var property position = game.at(23,10)
 
   method position() = position 
 
@@ -37,7 +37,7 @@ object pelota {
   var property position = game.at(20,10)
   var property siguiendoADiego = false
 
-  method image() = "bocha.png"
+  method image() = "labocha4.png"
 
   method seguirADiego() {
       siguiendoADiego = true
@@ -69,15 +69,26 @@ object perdiste {
 
 
 class Defensores {
-    
-    var property position = game.at(10,10)
-    
+
+    var property position = game.at(10, 10)
+    var property direccion = 1  // 1 para abajo, -1 para arriba
+
     method image() = "defensor.png"
 
     method mover() {
-      const y = 0.randomUpTo(game.height()).truncate(0)
-      position = game.at(10,y)
-  }
+        // Obtenemos la posición actual en y
+        const yActual = position.y()
 
+        // Calculamos la nueva posición en y
+        const nuevaY = yActual + direccion
+
+        // Cambiamos de dirección si llegamos a los bordes del tablero
+        if (nuevaY <= 0 || nuevaY >= game.height()) {
+            direccion = direccion * -1
+        }
+
+        // Actualizamos la posición del defensor
+        position = game.at(10, nuevaY)
+    }
 }
 

@@ -6,8 +6,8 @@ program juegoDelDiego {
 
 	primerNivel.iniciar()
 	game.start()
-	segundoNivel.iniciar()
-	game.start()
+	//segundoNivel.iniciar()
+	//game.start()
 
 }
 
