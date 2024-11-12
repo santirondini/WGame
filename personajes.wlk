@@ -1,33 +1,3 @@
-import wollok.game.*
-import juegoDelDiego.*
-
-object juego{
-  
-  method iniciar(){
-    game.width(41)
-    game.height(20)
-    game.boardGround("canchaOchoBit.jpg")
-    game.addVisualCharacter(diego)
-    game.addVisual(pelota)
-    game.addVisual(temporizador)
-    temporizador.iniciarTiempo()
-    const defensor1 = new Defensores()
-
-    game.addVisual(defensor1)
-
-    game.onTick(1000, "movimiento", { defensor1.mover() })
-
-    game.whenCollideDo(diego,{pelota=>
-      pelota.seguirADiego()
-    })
-
-    game.whenCollideDo(defensor1,{pelota => 
-      game.stop()
-      game.addVisual(perdiste)
-    })
-  }
-}
-
 object temporizador {
 
   var property tiempoRestante = 30
@@ -67,7 +37,7 @@ object pelota {
   var property position = game.at(20,10)
   var property siguiendoADiego = false
 
-  method image() = "labocha.png"
+  method image() = "bocha.png"
 
   method seguirADiego() {
       siguiendoADiego = true
