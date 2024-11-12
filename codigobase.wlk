@@ -37,7 +37,7 @@ object pelota {
     position = game.origin()
   }
 
-  method image() = "cha.png"
+  method image() = "bocha.png"
 
 }
 
