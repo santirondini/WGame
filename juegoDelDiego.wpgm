@@ -1,10 +1,47 @@
 import wollok.game.*
-import primerNivel.*
+import modeloNiveles.Nivel
 
 program juegoDelDiego {
+	
+	const primerNivel = new Nivel(
+		diegoX = 23,
+		diegoY = 10,
+		
+		tiempoDeJuego = 30,
+		enTransicion = false,
+		
+		pelotaY = 10,
+		pelotaX = 20,
+
+		ferrariX = 37,
+		ferrariY = 15,
+		
+		enfermeraX = 38,
+		enfermeraY = 4
+
+		)
+
+	/*const segundoNivel = new Nivel (
+		diegoX = 30,
+		diegoY = 10,
+		tiempoDeJuego = 25,
+		enTransicion = false,
+        pelotaY = 15,
+		pelotaX = 22
+	)
+
+	*/
+
+	game.start()
 
 	primerNivel.iniciar()
-	game.start()
+	
+
+	
+	
 }
+	
+
+
 
 

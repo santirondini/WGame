@@ -1,11 +1,33 @@
+import modeloNiveles.Nivel
 
-object temporizador {
+object diegoGanador {
 
-  var tiempoRestante = 30
+  method image() = "diegoConLaCopa.jpg"
+}
 
-  method nuevotiempo(x){
-      tiempoRestante = x
-  }
+class Enfermera {
+
+  var posEnfermeraX
+  var posEnfermeraY
+  
+  method image() = "enfermera94.png"
+
+  method position() = game.at(posEnfermeraX,posEnfermeraY)
+
+}
+
+class Ferrari {
+
+  var posFerrariX
+  var posFerrariY
+
+  method image() = "ferrar165x165.png"
+
+  method position() = game.at(posFerrariX,posFerrariY) 
+}
+class Temporizador {
+
+  var tiempoRestante
 
   method position() = game.at(20,18)
 
@@ -27,22 +49,20 @@ object temporizador {
 }
 
 
-object diego {
+class Diego {
 
-  var property position = game.at(23,10)
+  var ubicacionDiegoX
+  
+  var ubicacionDiegoY
+
+  // centro de cancha (23,10)
+  var property position = game.at(ubicacionDiegoX,ubicacionDiegoY)
 
   method position() = position 
 
   method image() = "maradona.png"
 
 
-/*
-  method patear() {
-    if (pelota.siguiendoADiego()) {
-      pelota.moverPelota(zonaDeGol.position())
-    }
-  }
-  */
 }
 
 class Zona {
@@ -51,9 +71,13 @@ class Zona {
   	  method position() = game.at(x, y)
 }
 
-object pelota {
+class Pelota {
 
-  var property position = game.at(20,10)
+  var posicionX
+  var posicionY
+  
+  // nivel 1 = (20,10)
+  var property position = game.at(posicionX,posicionY)
   var property siguiendoADiego = false
 
   method image() = "labocha4.png"
@@ -63,18 +87,17 @@ object pelota {
       game.onTick(50, "sincronizar", { self.sincronizarConDiego() })
   }
 
+  var diegoAsociado
+
 method sincronizarConDiego() {
     if (siguiendoADiego) {
-      position = diego.position()
+      position = diegoAsociado.position()
     }
   }
 
   method moverHorizontalmente(){
-
-    game.onTick(50,"movimiento", { 
-      position = position.left(1)
-    })
-
+    siguiendoADiego = false 
+    position = position.left(1)
   }
   
 }
@@ -123,7 +146,7 @@ class Defensor {
     }
 }
 
-object transicion{
+class Transicion{
     method position() = game.origin()
     method image() = "marcador5.jpg"
 }

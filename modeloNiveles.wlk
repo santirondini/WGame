@@ -2,15 +2,42 @@ import wollok.game.*
 import juegoDelDiego.*
 import personajes.*
 
+class Nivel {
 
-object primerNivel {
+  var diegoX
+  var diegoY
+
+  var pelotaX
+  var pelotaY
+
+  var ferrariX
+  var ferrariY
+
+  var enfermeraX
+  var enfermeraY
+
+  var tiempoDeJuego
+
+  var property enTransicion 
+
+  var property terminado = false
+  
+  const diego = new Diego(ubicacionDiegoX = diegoX, ubicacionDiegoY = diegoY) 
+  const pelota = new Pelota(diegoAsociado = diego,posicionX = pelotaX, posicionY = pelotaY)
+  const temporizador = new Temporizador(tiempoRestante = tiempoDeJuego)
+  const transicion = new Transicion()
+  const ferrariNegra = new Ferrari (posFerrariX = ferrariX, posFerrariY = ferrariY )
+  const enfermera = new Enfermera(posEnfermeraX = enfermeraX, posEnfermeraY = enfermeraY)
 
   method iniciar() {
+
     game.width(41)
     game.height(20)
     game.boardGround("canchaOchoBit.jpg")
     game.addVisualCharacter(diego)
     game.addVisual(pelota)
+    game.addVisual(ferrariNegra)
+    game.addVisual(enfermera)
     game.addVisual(temporizador)
     temporizador.iniciarTiempo()
 
@@ -69,8 +96,16 @@ object primerNivel {
     arco.forEach { zona =>
       game.whenCollideDo(zona, { pelota =>
         game.addVisual(transicion)
-        temporizador.nuevotiempo(30)
+        enTransicion = true        
       })
     }
+
+
+    // Configuración de pegarle al arco
+    keyboard.p().onPressDo {
+      game.onTick(100,"zurdazo maradoniano",{pelota.moverHorizontalmente()})
+    }
   }
-}
+
+ 
+ }
