@@ -1,4 +1,5 @@
-import modeloNiveles.Nivel
+import claseNivel.Nivel
+
 
 object diegoGanador {
 

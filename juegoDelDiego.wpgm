@@ -1,5 +1,7 @@
 import wollok.game.*
-import modeloNiveles.Nivel
+import claseNivel.Nivel
+import personajes.* 
+
 
 program juegoDelDiego {
 	
@@ -8,7 +10,7 @@ program juegoDelDiego {
 		diegoY = 10,
 		
 		tiempoDeJuego = 30,
-		enTransicion = false,
+		gol = false,
 		
 		pelotaY = 10,
 		pelotaX = 20,
@@ -32,9 +34,21 @@ program juegoDelDiego {
 
 	*/
 
-	game.start()
+	const transicion = new Transicion()
+
+	const sonidoAmbiente = game.sound("ambiente.mp3") 
+	sonidoAmbiente.shouldLoop(true)
+	game.schedule(10, {sonidoAmbiente.play()})
 
 	primerNivel.iniciar()
+
+	if(primerNivel.gol()){
+		game.addVisual(transicion)
+	}
+
+
+
+	game.start()
 	
 
 	

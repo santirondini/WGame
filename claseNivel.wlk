@@ -18,7 +18,7 @@ class Nivel {
 
   var tiempoDeJuego
 
-  var property enTransicion 
+  var property gol 
 
   var property terminado = false
   
@@ -109,8 +109,7 @@ class Nivel {
     // Configuración de colisiones para zonas de gol
     arco.forEach { zona =>
       game.whenCollideDo(zona, { pelota =>
-        game.addVisual(transicion)
-        enTransicion = true        
+        gol = true        
       })
     }
 
@@ -118,15 +117,15 @@ class Nivel {
 
     keyboard.p().onPressDo {
       if(ferrariNegra.agarrada())
-      game.onTick(50,"zurdazo maradoniano",{pelota.moverHorizontalmente()})
+      game.onTick(50,"super zurdazo maradoniano",{pelota.moverHorizontalmente()})
       else
-      game.onTick(100,"zurdazo maradoniano",{pelota.moverHorizontalmente()})
+      game.onTick(150,"zurdazo maradoniano",{pelota.moverHorizontalmente()})
     }
 
     // Configuración de movimiento de la enfermera
     game.onTick(1000,"mundial 94",{enfermera.buscandoAdiego()})
 
     // Configuración para cuando el Diego agarra la ferrari negra 
-    game.whenCollideDo(ferrariNegra, {ferrariNegra => ferrariNegra.fueAgarradaPorDiego()})
+    game.whenCollideDo(diego, {ferrariNegra => ferrariNegra.fueAgarradaPorDiego()}) // + la ferrari desaparezca 
  }
 }
