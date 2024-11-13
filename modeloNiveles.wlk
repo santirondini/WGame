@@ -72,7 +72,7 @@ class Nivel {
       game.onTick(500, "movimiento", { defensor.mover() })
     }
 
-    // Configuración de colisiones para defensores
+    // Configuración de colisiones para defensores y enfermera
     defensores.forEach { defensor =>
       game.whenCollideDo(defensor, { pelota =>
         game.stop()
@@ -81,7 +81,21 @@ class Nivel {
     }
 
       afuera.forEach { defensor =>
-      game.whenCollideDo(defensor, { pelota =>
+      game.whenCollideDo(defensor, { diego =>
+        game.stop()
+        game.addVisual(perdiste)
+      })
+    }
+
+    afuera.forEach { enfermera =>
+      game.whenCollideDo(enfermera, { pelota =>
+        game.stop()
+        game.addVisual(perdiste)
+      })
+    }
+
+    afuera.forEach { enfemera =>
+      game.whenCollideDo(enfermera, { diego =>
         game.stop()
         game.addVisual(perdiste)
       })
@@ -100,11 +114,14 @@ class Nivel {
       })
     }
 
-
     // Configuración de pegarle al arco
     keyboard.p().onPressDo {
       game.onTick(100,"zurdazo maradoniano",{pelota.moverHorizontalmente()})
     }
+
+    // Configuración de movimiento de la enfermera
+
+    game.onTick(1000,"mundial 94",{enfermera.buscandoAdiego()})
   }
 
  

@@ -12,7 +12,17 @@ class Enfermera {
   
   method image() = "enfermera94.png"
 
-  method position() = game.at(posEnfermeraX,posEnfermeraY)
+  var position = game.at(posEnfermeraX,posEnfermeraY)
+
+  method position() = position
+  
+  method buscandoAdiego() {
+    posEnfermeraX = 0.randomUpTo(game.width()).truncate(0)
+    posEnfermeraY = 0.randomUpTo(game.height()).truncate(0)
+    position = game.at(posEnfermeraX,posEnfermeraY)
+  }
+
+  
 
 }
 
@@ -47,7 +57,6 @@ class Temporizador {
     }
   }
 }
-
 
 class Diego {
 
