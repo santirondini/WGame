@@ -1,3 +1,5 @@
+
+
 object temporizador {
 
   var property tiempoRestante = 30
@@ -30,6 +32,19 @@ object diego {
 
   method image() = "maradona.png"
 
+
+/*
+  method patear() {
+    if (pelota.siguiendoADiego()) {
+      pelota.moverPelota(zonaDeGol.position())
+    }
+  }
+  */
+}
+
+object zonaDeGol {
+  var property position = game.at(40, game.height() / 2) // Posición del arco 
+  method image() = null
 }
 
 object pelota {
@@ -49,6 +64,15 @@ method sincronizarConDiego() {
       position = diego.position()
     }
   }
+
+  method moverHorizontalmente(){
+
+    game.onTick(50,"movimiento", { 
+      position = position.left(1)
+    })
+
+  }
+  
 }
 
 object paleta {
@@ -56,6 +80,18 @@ object paleta {
   const property rojo = "FF0000FF"
   const property negro = "00000000"
 }
+
+object gol {
+
+  method position() = game.center()
+
+  method text() = " ¡¡¡ GOOOOOOOOOOOOOOOOOOL !!! " 
+
+  method textColor() = paleta.negro()
+
+}
+
+
 
 object perdiste {
 
@@ -70,8 +106,10 @@ object perdiste {
 
 class Defensores {
 
-    var property position = game.at(10, 10)
-    var property direccion = 1  // 1 para abajo, -1 para arriba
+    const x 
+    const y
+    var property position = game.at(x, y)
+    var direccion  // 1 para abajo, -1 para arriba
 
     method image() = "defensor.png"
 
@@ -88,7 +126,7 @@ class Defensores {
         }
 
         // Actualizamos la posición del defensor
-        position = game.at(10, nuevaY)
+        position = game.at(x, nuevaY)
     }
 }
 
