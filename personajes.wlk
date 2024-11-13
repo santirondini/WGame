@@ -21,9 +21,6 @@ class Enfermera {
     posEnfermeraY = 0.randomUpTo(game.height()).truncate(0)
     position = game.at(posEnfermeraX,posEnfermeraY)
   }
-
-  
-
 }
 
 class Ferrari {
@@ -31,9 +28,19 @@ class Ferrari {
   var posFerrariX
   var posFerrariY
 
+  var property agarrada = false
+
+  var diego 
+
+  method fueAgarradaPorDiego() {
+    agarrada = true 
+    diego.agarroFerrari() 
+  }
+
   method image() = "ferrar165x165.png"
 
   method position() = game.at(posFerrariX,posFerrariY) 
+
 }
 class Temporizador {
 
@@ -64,6 +71,8 @@ class Diego {
   
   var ubicacionDiegoY
 
+  var property agarroFerrari = false 
+
   // centro de cancha (23,10)
   var property position = game.at(ubicacionDiegoX,ubicacionDiegoY)
 
@@ -93,7 +102,7 @@ class Pelota {
 
   method seguirADiego() {
       siguiendoADiego = true
-      game.onTick(50, "sincronizar", { self.sincronizarConDiego() })
+      game.onTick(25, "sincronizar", { self.sincronizarConDiego() })
   }
 
   var diegoAsociado
@@ -107,8 +116,7 @@ method sincronizarConDiego() {
   method moverHorizontalmente(){
     siguiendoADiego = false 
     position = position.left(1)
-  }
-  
+  }  
 }
 
 object paleta {

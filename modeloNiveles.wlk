@@ -26,7 +26,7 @@ class Nivel {
   const pelota = new Pelota(diegoAsociado = diego,posicionX = pelotaX, posicionY = pelotaY)
   const temporizador = new Temporizador(tiempoRestante = tiempoDeJuego)
   const transicion = new Transicion()
-  const ferrariNegra = new Ferrari (posFerrariX = ferrariX, posFerrariY = ferrariY )
+  const ferrariNegra = new Ferrari (posFerrariX = ferrariX, posFerrariY = ferrariY,diego = diego)
   const enfermera = new Enfermera(posEnfermeraX = enfermeraX, posEnfermeraY = enfermeraY)
 
   method iniciar() {
@@ -102,7 +102,7 @@ class Nivel {
     }
 
     // Configuración de colisión para Diego y la pelota
-    game.whenCollideDo(diego, { pelota =>
+    game.whenCollideDo(diego, {pelota =>
       pelota.seguirADiego()
     })
 
@@ -114,15 +114,19 @@ class Nivel {
       })
     }
 
-    // Configuración de pegarle al arco
+    // Configuración de pegarle al arco. Si el diego agarro al ferrari, le pega el doble de rápido
+
     keyboard.p().onPressDo {
+      if(ferrariNegra.agarrada())
+      game.onTick(50,"zurdazo maradoniano",{pelota.moverHorizontalmente()})
+      else
       game.onTick(100,"zurdazo maradoniano",{pelota.moverHorizontalmente()})
     }
 
     // Configuración de movimiento de la enfermera
-
     game.onTick(1000,"mundial 94",{enfermera.buscandoAdiego()})
-  }
 
- 
+    // Configuración para cuando el Diego agarra la ferrari negra 
+    game.whenCollideDo(ferrariNegra, {ferrariNegra => ferrariNegra.fueAgarradaPorDiego()})
  }
+}
