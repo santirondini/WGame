@@ -4,30 +4,48 @@ import personajes.*
 
 class Nivel {
 
-  var diegoX
-  var diegoY
+  const diegoX
+  const diegoY
 
-  var pelotaX
-  var pelotaY
+  const pelotaX
+  const pelotaY
 
-  var ferrariX
-  var ferrariY
+  const enfermeraX
+  const enfermeraY
 
-  var enfermeraX
-  var enfermeraY
+  const tiempoDeJuego
 
-  var tiempoDeJuego
+  const lineadegol
 
-  var property gol 
+  const moverDefensor
+
+  var property gol = false
 
   var property terminado = false
   
   const diego = new Diego(ubicacionDiegoX = diegoX, ubicacionDiegoY = diegoY) 
   const pelota = new Pelota(diegoAsociado = diego,posicionX = pelotaX, posicionY = pelotaY)
   const temporizador = new Temporizador(tiempoRestante = tiempoDeJuego)
-  const transicion = new Transicion()
-  const ferrariNegra = new Ferrari (posFerrariX = ferrariX, posFerrariY = ferrariY,diego = diego)
-  const enfermera = new Enfermera(posEnfermeraX = enfermeraX, posEnfermeraY = enfermeraY)
+  //const enfermera = new Enfermera(posEnfermeraX = enfermeraX, posEnfermeraY = enfermeraY)
+
+    const defensores = [
+      new Defensor(x = 10+ moverDefensor, direccion = 1, y = 5),
+      new Defensor(x = 5+ moverDefensor, direccion = -1, y = 15)
+    ]
+    
+    // Crear una lista de zonas de gol
+    const arco = [
+      new Zona(x = lineadegol, y = 8),
+      new Zona(x = lineadegol, y = 9),
+      new Zona(x = lineadegol, y = 10),
+      new Zona(x = lineadegol, y = 11)
+    ]
+
+    // Crear una lista de zona afuera
+    const afuera = [
+      new Zona(x = lineadegol, y = 12),
+      new Zona(x = lineadegol, y = 7)
+    ]
 
   method iniciar() {
 
@@ -36,30 +54,10 @@ class Nivel {
     game.boardGround("canchaOchoBit.jpg")
     game.addVisualCharacter(diego)
     game.addVisual(pelota)
-    game.addVisual(ferrariNegra)
-    game.addVisual(enfermera)
+    //game.addVisual(enfermera)
     game.addVisual(temporizador)
     temporizador.iniciarTiempo()
 
-    // Crear una lista de defensores
-    const defensores = [
-      new Defensor(x = 10, direccion = 1, y = 5),
-      new Defensor(x = 5, direccion = -1, y = 15)
-    ]
-    
-    // Crear una lista de zonas de gol
-    const arco = [
-      new Zona(x = 1, y = 8),
-      new Zona(x = 1, y = 9),
-      new Zona(x = 1, y = 10),
-      new Zona(x = 1, y = 11)
-    ]
-
-    // Crear una lista de zona afuera
-    const afuera = [
-      new Zona(x = 1, y = 12),
-      new Zona(x = 1, y = 7)
-    ]
 
 
     // Agregar visuales de defensores y zonas de gol al juego
@@ -94,12 +92,12 @@ class Nivel {
       })
     }
 
-    afuera.forEach { enfemera =>
+    /*afuera.forEach { enfemera =>
       game.whenCollideDo(enfermera, { diego =>
         game.stop()
         game.addVisual(perdiste)
       })
-    }
+    }*/
 
     // Configuración de colisión para Diego y la pelota
     game.whenCollideDo(diego, {pelota =>
@@ -109,23 +107,33 @@ class Nivel {
     // Configuración de colisiones para zonas de gol
     arco.forEach { zona =>
       game.whenCollideDo(zona, { pelota =>
-        gol = true        
+        gol = true
       })
     }
 
     // Configuración de pegarle al arco. Si el diego agarro al ferrari, le pega el doble de rápido
-
     keyboard.p().onPressDo {
-      if(ferrariNegra.agarrada())
-      game.onTick(50,"super zurdazo maradoniano",{pelota.moverHorizontalmente()})
-      else
       game.onTick(150,"zurdazo maradoniano",{pelota.moverHorizontalmente()})
     }
 
     // Configuración de movimiento de la enfermera
-    game.onTick(1000,"mundial 94",{enfermera.buscandoAdiego()})
+    //game.onTick(1000,"mundial 94",{enfermera.buscandoAdiego()})
 
     // Configuración para cuando el Diego agarra la ferrari negra 
     game.whenCollideDo(diego, {ferrariNegra => ferrariNegra.fueAgarradaPorDiego()}) // + la ferrari desaparezca 
  }
+   method resetGol() {
+    gol = false
+  }
+
+  method finalizar() {
+    game.removeVisual(diego)
+    game.removeVisual(pelota)
+    game.removeVisual(temporizador)
+    
+    // Remover defensores, zonas de gol, y demás elementos visuales añadidos en iniciar()
+    defensores.forEach { defensor => game.removeVisual(defensor) }
+    arco.forEach { zona => game.removeVisual(zona) }
+    afuera.forEach { zona => game.removeVisual(zona) }
+  }
 }
