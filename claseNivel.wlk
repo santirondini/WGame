@@ -18,13 +18,15 @@ class Nivel {
   const lineadegol
 
   const moverDefensor
+  
+  const arcoRival
 
   var property gol = false
 
   var property terminado = false
   
   const diego = new Diego(ubicacionDiegoX = diegoX, ubicacionDiegoY = diegoY) 
-  const pelota = new Pelota(diegoAsociado = diego,posicionX = pelotaX, posicionY = pelotaY)
+  const pelota = new Pelota(diegoAsociado = diego,posicionX = pelotaX, posicionY = pelotaY, patearPara = arcoRival)
   const temporizador = new Temporizador(tiempoRestante = tiempoDeJuego)
   //const enfermera = new Enfermera(posEnfermeraX = enfermeraX, posEnfermeraY = enfermeraY)
 

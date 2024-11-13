@@ -94,6 +94,8 @@ class Pelota {
 
   var posicionX
   var posicionY
+
+  var patearPara
   
   // nivel 1 = (20,10)
   var property position = game.at(posicionX,posicionY)
@@ -116,7 +118,7 @@ method sincronizarConDiego() {
 
   method moverHorizontalmente(){
     siguiendoADiego = false 
-    position = position.left(1)
+    position = position.left(patearPara)
   }  
 }
 

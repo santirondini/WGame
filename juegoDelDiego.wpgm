@@ -19,7 +19,9 @@ program juegoDelDiego {
 		enfermeraY = 4,
 
 		lineadegol=1,
-		moverDefensor=0
+		moverDefensor=0,
+
+		arcoRival = 1
 		)
 
 	const segundoNivel = new Nivel(
@@ -36,8 +38,9 @@ program juegoDelDiego {
 		enfermeraY = 4,
 
 		lineadegol=36,
-		moverDefensor=20
+		moverDefensor=20,
 
+		arcoRival = -1
 	)
 
 	
