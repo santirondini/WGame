@@ -1,7 +1,11 @@
 
 object temporizador {
 
-  var property tiempoRestante = 30
+  var tiempoRestante = 30
+
+  method nuevotiempo(x){
+      tiempoRestante = x
+  }
 
   method position() = game.at(20,18)
 
@@ -41,7 +45,7 @@ object diego {
   */
 }
 
-class ZonaDeGol {
+class Zona {
       const x
       const y
   	  method position() = game.at(x, y)
@@ -79,19 +83,8 @@ object paleta {
   const property verde = "00FF00FF"
   const property rojo = "FF0000FF"
   const property negro = "00000000"
+  const property amarillo = "FFFC00CC"
 }
-
-object gol {
-
-  method position() = game.center()
-
-  method text() = " ¡¡¡ GOOOOOOOOOOOOOOOOOOL !!! " 
-
-  method textColor() = paleta.negro()
-
-}
-
-
 
 object perdiste {
 
@@ -104,7 +97,7 @@ object perdiste {
 }
 
 
-class Defensores {
+class Defensor {
 
     const x 
     const y
@@ -121,12 +114,17 @@ class Defensores {
         const nuevaY = yActual + direccion
 
         // Cambiamos de dirección si llegamos a los bordes del tablero
-        if (nuevaY <= 0 || nuevaY >= game.height()) {
+        if (nuevaY <= 5 || nuevaY >= game.height()-5) {
             direccion = direccion * -1
         }
 
         // Actualizamos la posición del defensor
         position = game.at(x, nuevaY)
     }
+}
+
+object transicion{
+    method position() = game.origin()
+    method image() = "marcador5.jpg"
 }
 
