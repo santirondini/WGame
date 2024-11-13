@@ -1,5 +1,4 @@
 
-
 object temporizador {
 
   var property tiempoRestante = 30
@@ -42,9 +41,10 @@ object diego {
   */
 }
 
-object zonaDeGol {
-  var property position = game.at(40, game.height() / 2) // Posición del arco 
-  method image() = null
+class ZonaDeGol {
+      const x
+      const y
+  	  method position() = game.at(x, y)
 }
 
 object pelota {

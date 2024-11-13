@@ -1,14 +1,10 @@
 import wollok.game.*
 import primerNivel.*
-import segundoNivel.*
 
 program juegoDelDiego {
 
 	primerNivel.iniciar()
 	game.start()
-	//segundoNivel.iniciar()
-	//game.start()
-
 }
 
 
