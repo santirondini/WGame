@@ -14,9 +14,9 @@ Sos le Diegote y tenes que meter un Zurdazo Maradoniano para meter gol y pasar d
 
 ## Capturas
 
-![cap1]()
-![cap2]()
-![cap3]()
+![cap1](https://github.com/santirondini/WGame/blob/main/assets/nivel1.jpeg)
+![cap2](https://github.com/santirondini/WGame/blob/main/assets/Derrota.jpeg)
+![cap3](https://github.com/santirondini/WGame/blob/main/assets/victoria.jpg)
 
 ## Controles
 
