@@ -58,9 +58,29 @@ object diego {
 
   method position() = position
 
-  method position(x) {
-    position = x
-  } 
+  method moveRight(x) {
+    if (position.x() < game.width() - 1) {
+      position = x
+    }
+  }
+
+  method moveLeft(x) {
+    if (position.x() > 0) {
+      position = x
+    }
+  }
+
+  method moveUp(x) {
+    if (position.y() > 0) {
+      position = x
+    }
+  }
+
+  method moveDown(x) {
+    if (position.y() < game.height() - 1) {
+      position = x
+    }
+  }
 
   method image() = "maradona.png"
 

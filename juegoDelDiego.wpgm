@@ -1,10 +1,92 @@
 import wollok.game.*
-import codigobase.*
+import claseNivel.Nivel
+import personajes.* 
+
 
 program juegoDelDiego {
+	
+	const primerNivel = new Nivel(
+		diegoX = 23,
+		diegoY = 10,
+		
+		tiempoDeJuego = 30,
+		gol = false,
+		
+		pelotaY = 10,
+		pelotaX = 20,
+		
+		enfermeraX = 38,
+		enfermeraY = 4,
 
-	juego.iniciar()
-	game.start()
+		lineadegol=1,
+
+		arcoRival = 1,
+		imagenDiego="maradona.png",
+
+		
+    defensores = [
+      new Defensor(x = 10+ 0, direccion = 1, y = 5),
+      new Defensor(x = 5+ 0, direccion = -1, y = 15)
+	])
+
+	const segundoNivel = new Nivel(
+		diegoX = 7,
+		diegoY = 10,
+		
+		tiempoDeJuego = 30,
+		gol = false,
+		
+		pelotaY = 10,
+		pelotaX = 11,
+		
+		enfermeraX = 38,
+		enfermeraY = 4,
+
+		lineadegol=38,
+		//moverDefensor=20,
+
+		arcoRival = -1,
+		imagenDiego="maradona2.png",
+
+	  defensores = [
+      new Defensor(x = 10+ 20, direccion = 1, y = 5),
+      new Defensor(x = 5+ 20, direccion = -1, y = 15)    
+	  ])
+
+	const transicion = new Transicion(imagen = "marcador5.jpg")
+	const victoria = new Transicion(imagen = "victoria.jpg")
+
+	const sonidoAmbiente = game.sound("ambiente.mp3") 
+	sonidoAmbiente.shouldLoop(true)
+	game.schedule(50, {sonidoAmbiente.play()})
+
+	primerNivel.iniciar()
+
+	game.onTick(100, "verificar gol", {
+		if (primerNivel.gol()) {
+			//audio de gol
+			game.addVisual(transicion)
+			game.schedule(2000, {
+				game.removeVisual(transicion)
+				primerNivel.finalizar() // Llama a finalizar para eliminar todos los elementos del primer nivel
+				primerNivel.resetGol()
+				segundoNivel.iniciar()
+				sonidoAmbiente.shouldLoop(true)
+			})
+		}
+	})
+
+		game.onTick(100, "verificar gol", {
+		if (segundoNivel.gol()) {
+			game.schedule(5000, {game.addVisual(victoria)})
+			game.stop()
+		}
+	})
+
+	game.start()	
 }
+	
+
+
 
 
