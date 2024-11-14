@@ -1,6 +1,6 @@
-# El Juego Del Diego 
+# El Juego Del Diego 🛐🔟⚽
 
-Sos le Diegote y tenes que meter un Zurdazo Maradoniano para meter gol y pasar de nivel hasta consagrarte campeon del mundo.
+Sos el Diegote y tenes que meter un Zurdazo Maradoniano para meter gol y pasar de nivel hasta consagrarte campeon del mundo.🥇
 
 ## Equipo de desarrollo
 
