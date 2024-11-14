@@ -19,9 +19,11 @@ class Nivel {
 
   const lineadegol
 
-  const moverDefensor
+  //const moverDefensor
   
   const arcoRival
+
+  var defensores
 
   var property gol = false
 
@@ -32,13 +34,14 @@ class Nivel {
   const temporizador = new Temporizador(tiempoRestante = tiempoDeJuego)
   //const enfermera = new Enfermera(posEnfermeraX = enfermeraX, posEnfermeraY = enfermeraY)
 
-    const defensores = [
+    /*const defensores = [
       new Defensor(x = 10+ moverDefensor, direccion = 1, y = 5),
       new Defensor(x = 5+ moverDefensor, direccion = -1, y = 15)
     ]
-    
+    */
     // Crear una lista de zonas de gol
     const arco = [
+      new Zona(x = lineadegol, y = 7),
       new Zona(x = lineadegol, y = 8),
       new Zona(x = lineadegol, y = 9),
       new Zona(x = lineadegol, y = 10),
@@ -71,7 +74,7 @@ class Nivel {
 
     // Configuración de movimiento de los defensores
     defensores.forEach { defensor =>
-      game.onTick(500, "movimiento", { defensor.mover() })
+      game.onTick(300, "movimiento", { defensor.mover() })
     }
 
     // Configuración de colisiones para defensores y enfermera
@@ -115,13 +118,10 @@ class Nivel {
       })
     }
 
-    // Configuración de pegarle al arco. Si el diego agarro al ferrari, le pega el doble de rápido
+    // Configuración de pegarle al arco.
     keyboard.p().onPressDo {
       game.onTick(150,"zurdazo maradoniano",{pelota.moverHorizontalmente()})
     }
-
-    // Configuración de movimiento de la enfermera
-    //game.onTick(1000,"mundial 94",{enfermera.buscandoAdiego()})
 
     // Configuración para cuando el Diego agarra la ferrari negra 
     game.whenCollideDo(diego, {ferrariNegra => ferrariNegra.fueAgarradaPorDiego()}) // + la ferrari desaparezca 
@@ -131,6 +131,7 @@ class Nivel {
   }
 
   method finalizar() {
+
     game.removeVisual(diego)
     game.removeVisual(pelota)
     game.removeVisual(temporizador)
