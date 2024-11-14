@@ -1,48 +1,5 @@
 import claseNivel.Nivel
 
-
-object diegoGanador {
-
-  method image() = "diegoConLaCopa.jpg"
-}
-
-class Enfermera {
-
-  var posEnfermeraX
-  var posEnfermeraY
-  
-  method image() = "enfermera94.png"
-
-  var position = game.at(posEnfermeraX,posEnfermeraY)
-
-  method position() = position
-  
-  method buscandoAdiego() {
-    posEnfermeraX = 0.randomUpTo(game.width()).truncate(0)
-    posEnfermeraY = 0.randomUpTo(game.height()).truncate(0)
-    position = game.at(posEnfermeraX,posEnfermeraY)
-  }
-}
-
-class Ferrari {
-
-  const posFerrariX
-  const posFerrariY
-
-  var property agarrada = false
-
-  const diego 
-
-  method fueAgarradaPorDiego() {
-    agarrada = true 
-    diego.agarroFerrari() 
-  }
-
-  method image() = "ferrar165x165.png"
-
-  method position() = game.at(posFerrariX,posFerrariY) 
-
-}
 class Temporizador {
 
   var tiempoRestante
@@ -99,7 +56,6 @@ class Pelota {
 
   const patearPara
   
-  // nivel 1 = (20,10)
   var property position = game.at(posicionX,posicionY)
   var property siguiendoADiego = false
 
@@ -171,4 +127,3 @@ class Transicion{
     method position() = game.origin()
     method image() = imagen
 }
-
