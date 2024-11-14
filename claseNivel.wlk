@@ -7,6 +7,8 @@ class Nivel {
   const diegoX
   const diegoY
 
+  const imagenDiego
+
   const pelotaX
   const pelotaY
 
@@ -25,7 +27,7 @@ class Nivel {
 
   var property terminado = false
   
-  const diego = new Diego(ubicacionDiegoX = diegoX, ubicacionDiegoY = diegoY) 
+  const diego = new Diego(ubicacionDiegoX = diegoX, ubicacionDiegoY = diegoY, imagen= imagenDiego) 
   const pelota = new Pelota(diegoAsociado = diego,posicionX = pelotaX, posicionY = pelotaY, patearPara = arcoRival)
   const temporizador = new Temporizador(tiempoRestante = tiempoDeJuego)
   //const enfermera = new Enfermera(posEnfermeraX = enfermeraX, posEnfermeraY = enfermeraY)

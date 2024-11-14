@@ -21,7 +21,8 @@ program juegoDelDiego {
 		lineadegol=1,
 		moverDefensor=0,
 
-		arcoRival = 1
+		arcoRival = 1,
+		imagenDiego="maradona.png"
 		)
 
 	const segundoNivel = new Nivel(
@@ -40,12 +41,15 @@ program juegoDelDiego {
 		lineadegol=36,
 		moverDefensor=20,
 
-		arcoRival = -1
+		arcoRival = -1,
+		imagenDiego="maradona2.png"
+
 	)
 
 	
 
-	const transicion = new Transicion()
+	const transicion = new Transicion(imagen = "marcador5.jpg")
+	const victoria = new Transicion(imagen = "diegoConLaCopa.jpg")
 
 	const sonidoAmbiente = game.sound("ambiente.mp3") 
 	sonidoAmbiente.shouldLoop(true)
@@ -62,6 +66,13 @@ program juegoDelDiego {
 				primerNivel.resetGol()
 				segundoNivel.iniciar()
 			})
+		}
+	})
+
+		game.onTick(100, "verificar gol", {
+		if (segundoNivel.gol()) {
+			game.addVisual(victoria)
+			game.stop()
 		}
 	})
 

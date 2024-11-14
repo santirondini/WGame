@@ -26,12 +26,12 @@ class Enfermera {
 
 class Ferrari {
 
-  var posFerrariX
-  var posFerrariY
+  const posFerrariX
+  const posFerrariY
 
   var property agarrada = false
 
-  var diego 
+  const diego 
 
   method fueAgarradaPorDiego() {
     agarrada = true 
@@ -68,9 +68,11 @@ class Temporizador {
 
 class Diego {
 
-  var ubicacionDiegoX
+  const ubicacionDiegoX
   
-  var ubicacionDiegoY
+  const ubicacionDiegoY
+
+  const imagen 
 
   var property agarroFerrari = false 
 
@@ -79,7 +81,7 @@ class Diego {
 
   method position() = position 
 
-  method image() = "maradona.png"
+  method image() = imagen
 
 
 }
@@ -92,10 +94,10 @@ class Zona {
 
 class Pelota {
 
-  var posicionX
-  var posicionY
+  const posicionX
+  const posicionY
 
-  var patearPara
+  const patearPara
   
   // nivel 1 = (20,10)
   var property position = game.at(posicionX,posicionY)
@@ -108,7 +110,7 @@ class Pelota {
       game.onTick(25, "sincronizar", { self.sincronizarConDiego() })
   }
 
-  var diegoAsociado
+  const diegoAsociado
 
 method sincronizarConDiego() {
     if (siguiendoADiego) {
@@ -131,12 +133,9 @@ object paleta {
 
 object perdiste {
 
-  method position() = game.center()
+  method position() = game.origin()
 
-  method text() = "PERDISTE. ME COMENTAN QUE EL DIEGO NO RESISTIÓ" 
-
-  method textColor() = paleta.rojo()
-
+  method image() = "Derrota.jpeg" 
 }
 
 
@@ -167,7 +166,9 @@ class Defensor {
 }
 
 class Transicion{
+
+    const imagen
     method position() = game.origin()
-    method image() = "marcador5.jpg"
+    method image() = imagen
 }
 
