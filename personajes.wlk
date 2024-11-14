@@ -135,7 +135,7 @@ object perdiste {
 
   method position() = game.origin()
 
-  method image() = "Derrota.jpeg" 
+  method image() = "Derrota.jpg" 
 }
 
 
