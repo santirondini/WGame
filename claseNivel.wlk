@@ -40,12 +40,13 @@ class Nivel {
     ]
     */
     // Crear una lista de zonas de gol
+
+    //new Zona(x = lineadegol, y = 11)
+
     const arco = [
-      new Zona(x = lineadegol, y = 7),
       new Zona(x = lineadegol, y = 8),
       new Zona(x = lineadegol, y = 9),
-      new Zona(x = lineadegol, y = 10),
-      new Zona(x = lineadegol, y = 11)
+      new Zona(x = lineadegol, y = 10)
     ]
 
     // Crear una lista de zona afuera

@@ -27,8 +27,7 @@ program juegoDelDiego {
     defensores = [
       new Defensor(x = 10+ 0, direccion = 1, y = 5),
       new Defensor(x = 5+ 0, direccion = -1, y = 15)
-	]
-		)
+	])
 
 	const segundoNivel = new Nivel(
 		diegoX = 7,
@@ -52,8 +51,7 @@ program juegoDelDiego {
 	  defensores = [
       new Defensor(x = 10+ 20, direccion = 1, y = 5),
       new Defensor(x = 5+ 20, direccion = -1, y = 15)    
-	  ]
-	)
+	  ])
 
 	const transicion = new Transicion(imagen = "marcador5.jpg")
 	const victoria = new Transicion(imagen = "victoria.jpg")
@@ -80,7 +78,7 @@ program juegoDelDiego {
 
 		game.onTick(100, "verificar gol", {
 		if (segundoNivel.gol()) {
-			game.addVisual(victoria)
+			game.schedule(5000, {game.addVisual(victoria)})
 			game.stop()
 		}
 	})
